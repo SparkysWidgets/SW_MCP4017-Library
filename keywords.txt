@@ -1,0 +1,23 @@
+#######################################
+# Syntax Coloring Map for MCP4017
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+mcp4017	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+setSteps		KEYWORD2
+setResistance	KEYWORD2
+calcResistance	KEYWORD2
+I2CSendSteps	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
