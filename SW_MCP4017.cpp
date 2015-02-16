@@ -16,13 +16,14 @@
 
 #include "SW_MCP4017.h"
 
-MCP4017::MCP4017(uint8_t adcAddress, uint8_t maxSteps, int maxOhms)
+MCP4017::MCP4017(uint8_t adcAddress, uint8_t maxSteps, float maxOhms)
 {
   I2CADCAddress = adcAddress;
   _maxSteps = maxSteps;
   _currentStep = 0;
-  _currentRout = 0;
+  _currentRout = 0.0;
   _maxOhm = maxOhms;
+
   // We are going to assume that Wire.begin() has been called in setup()
 }
 
@@ -37,8 +38,14 @@ void MCP4017::setSteps(uint8_t steps)
 {
 
 	_currentStep = steps;
-	_currentRout = (((float)steps / _maxSteps) * _maxOhm) + WIPEROHMS;
-
+	Serial.println(_maxOhm);
+	float temp1 = (float)steps / _maxSteps;
+	Serial.println(temp1);
+	float temp2 = temp1 * _maxOhm;
+	Serial.println(temp2);
+	_currentRout = temp2 + WIPEROHMS;
+	Serial.println(_currentRout);
+	//_currentRout = (((float)steps / _maxSteps) * _maxOhm) + WIPEROHMS;
 	I2CSendSteps(_currentStep);
 
 }
@@ -68,9 +75,9 @@ void MCP4017::setResistance(double Rout)
 
 float MCP4017::calcResistance()
 {
-	float Rout;
-	Rout = ((_currentStep / _maxSteps) * _maxOhm) + WIPEROHMS;
-	return Rout;
+	//float Rout;
+	//Rout = ((_currentStep / _maxSteps) * _maxOhm) + WIPEROHMS;
+	return _currentRout;
 }
 
 /////////////////////////////////////////////////////////////////////////////

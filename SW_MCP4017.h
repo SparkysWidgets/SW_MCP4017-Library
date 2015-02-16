@@ -32,7 +32,7 @@
 
 class MCP4017 {
  public:
-	MCP4017(uint8_t adcAddress, uint8_t maxSteps, int maxOhms); //Overload for only this class initialization
+	MCP4017(uint8_t adcAddress, uint8_t maxSteps, float maxOhms); //Overload for only this class initialization
 
 	void setSteps(uint8_t steps);
 	void setResistance(double Rout);
@@ -43,7 +43,7 @@ class MCP4017 {
 	void I2CSendSteps(uint8_t steps);
  	int _maxSteps; //this is the Vin of the MCP3221 in Millivolts
  	int _currentStep;
- 	int _maxOhm;
+ 	float _maxOhm;
 	float _currentRout;
 };
 
